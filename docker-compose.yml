@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  next-app:
+    build: .
+    container_name: bulletin_board_frontend_nextjs
+    command: npm run dev  # <- コンテナ起動時に開発サーバも起動するように変更
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./next-app:/app
+    stdin_open: true
+    tty: true

@@ -1,0 +1,55 @@
+.pageTitle {
+  margin-top: 24px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.wrapContents {
+  margin: 24px;
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+  border: 1px solid #000;
+}
+
+.wrapForm {
+  margin: 24px;
+  text-align: center;
+}
+
+.wrapList {
+  border: 1px solid #000;
+  margin: 24px;
+  height: 500px;
+}
+
+.pageSubTitle {
+  margin: 48px 24px 0;
+  text-align: center;
+}
+
+/* 共通コンポーネント化 */
+.btn {
+  padding: 8px 16px;
+  color: #fff;
+  cursor: pointer;
+  background-color: #333;
+  border-radius: 5px;
+}
+
+/* margin */
+.mt8 {
+  margin-top: 8px;
+}
+
+.mt16 {
+  margin-top: 16px;
+}
+
+.mt24 {
+    margin-top: 24px;
+}
+
+.ml16 {
+  margin-left: 16px;
+}

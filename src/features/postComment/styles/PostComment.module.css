@@ -1,0 +1,25 @@
+.postCommentForm {
+  margin-top: 80px;
+  text-align: center;
+  border: 1px solid #000;
+  margin: 24px;
+  padding: 24px;
+}
+
+.btn {
+  padding: 8px 16px;
+  color: #fff;
+  background-color: #333;
+  border-radius: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 180px;
+  text-align: center;
+}
+
+.wrapForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}

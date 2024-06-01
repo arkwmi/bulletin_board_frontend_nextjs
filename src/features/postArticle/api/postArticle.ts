@@ -4,7 +4,7 @@ export const postArticle = async (data: {
   content: string;
 }) => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/articles/post`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/articles`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -14,7 +14,6 @@ const ArticleDetailPage: React.FC<ArticlePageProps> = ({ params }) => {
 
   return (
     <div>
-      <Header />
       {id && <ArticleIdDetail articleId={Number(id)} />}
     </div>
   );

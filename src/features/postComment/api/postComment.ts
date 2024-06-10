@@ -1,3 +1,5 @@
+import { revalidatePath } from "next/cache";
+
 export const postComment = async (data: {
     userId: number;
     articleId: number;
@@ -13,6 +15,10 @@ export const postComment = async (data: {
       });
       const responseData = await response.json();
       console.log(responseData);
+
+      // コメント投稿後にデータを再取得する必要なくす
+      revalidatePath(`/articles/${data.articleId}`);
+      
     } catch (error) {
       console.error("Error:", error);
     }

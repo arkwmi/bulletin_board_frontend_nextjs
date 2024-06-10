@@ -1,26 +1,13 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { getUserCount } from "../api/getUserCount";
-import { getArticleCount } from "../api/getArticleCount";
+// "use client";
+import React from "react";
 import cStyle from "../../../styles/Common.module.css";
 
-const DisplayCount: React.FC = () => {
-  const [userCount, setUserCount] = useState<number>();
-  const [articleCount, setArticleCount] = useState<number>();
+interface DisplayCountProps {
+  userCount: number;
+  articleCount: number;
+}
 
-  useEffect(() => {
-    const fetchUserCount = async () => {
-      const fetchedUsers = await getUserCount();
-      setUserCount(fetchedUsers);
-    };
-    fetchUserCount();
-
-    const fetchArticleCount = async () => {
-        const fetchedArticles = await getArticleCount();
-        setArticleCount(fetchedArticles);
-      };
-      fetchArticleCount();
-  }, []);
+const DisplayCount: React.FC<DisplayCountProps> = ({ userCount, articleCount }) => {
 
   return (
     <div className={cStyle.wrapForm}>

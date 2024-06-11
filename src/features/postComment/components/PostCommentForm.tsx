@@ -1,6 +1,8 @@
+"use client";
 import React, { useState } from "react";
 import cStyle from "../../../styles/Common.module.css";
 import style from "../styles/PostComment.module.css";
+import { postComment } from "../api/postComment";
 
 interface FormData {
   userId: number;
@@ -10,34 +12,28 @@ interface FormData {
 
 interface PostCommentFormProps {
   articleId: number;
-  onSubmit: (data: FormData) => void;
 }
 
-const PostCommentForm: React.FC<PostCommentFormProps> = ({
-  articleId,
-  onSubmit,
-}) => {
+const PostCommentForm: React.FC<PostCommentFormProps> = ({ articleId }) => {
   const [formData, setFormData] = useState<FormData>({
-    // TODO:userIdはログイン時のセッションから取得
+    // TODO: userIdはログイン時のセッションから取得
     userId: 1,
     articleId: articleId,
     comment: "",
   });
   const [message, setMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (formData.comment.trim() === "") {
       setMessage("コメントを入力してください");
       return;
     }
-    onSubmit(formData);
+    await postComment(formData);
     setMessage("投稿しました");
   };
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };

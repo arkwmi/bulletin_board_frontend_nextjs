@@ -1,4 +1,6 @@
+'use server';
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const postComment = async (data: {
     userId: number;
@@ -15,10 +17,12 @@ export const postComment = async (data: {
       });
       const responseData = await response.json();
       console.log(responseData);
-
-      // コメント投稿後にデータを再取得する必要なくす
-      revalidatePath(`/articles/${data.articleId}`);
       
+      // キャッシュされた投稿を更新する
+      revalidatePath(`/articles/${data.articleId}`);
+      // 最新データが取得されたページに遷移
+      redirect(`/articles/${data.articleId}`);
+
     } catch (error) {
       console.error("Error:", error);
     }

@@ -1,4 +1,3 @@
-// "use client";
 import React from "react";
 import cStyle from "../../../styles/Common.module.css";
 

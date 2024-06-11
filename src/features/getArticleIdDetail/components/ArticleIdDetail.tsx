@@ -1,40 +1,15 @@
-"use client";
-import React, { useEffect, useState } from "react";
 import style from "../styles/ArticleIdDetail.module.css";
 import cStyle from "../../../styles/Common.module.css";
 import { ArticleDetail } from "@/types/types";
-import { getArticleIdDetail } from "../api/getArticleIdDetail";
-import { postComment } from "@/features/postComment/api/postComment";
 import PostCommentForm from "@/features/postComment/components/PostCommentForm";
 
 interface ArticleDetailProps {
   articleId: number;
+  articleIdDetail: ArticleDetail;
 }
 
-const ArticleIdDetail: React.FC<ArticleDetailProps> = ({ articleId }) => {
-  const [articleIdDetail, setArticleIdDetail] = useState<ArticleDetail | null>(null);
-
-  useEffect(() => {
-    const fetchArticleIdDetail = async () => {
-      const fetchedArticleIdDetail = await getArticleIdDetail(articleId);
-      setArticleIdDetail(fetchedArticleIdDetail);
-    };
-    fetchArticleIdDetail();
-  }, [articleId]);
-
-  const handleSubmit = async (data: {
-    userId: number;
-    articleId: number;
-    comment: string;
-  }) => {
-    console.log(data);
-    await postComment(data);
-
-    // 新しいコメントを反映させるために記事詳細を再取得
-    const updatedArticleIdDetail = await getArticleIdDetail(articleId);
-    setArticleIdDetail(updatedArticleIdDetail);
-  };
-
+const ArticleIdDetail: React.FC<ArticleDetailProps> = async ({ articleId, articleIdDetail }) => {
+  
   if (!articleIdDetail) {
     return (
       <div className={style.postArticleForm}>
@@ -50,11 +25,11 @@ const ArticleIdDetail: React.FC<ArticleDetailProps> = ({ articleId }) => {
         <h4>{articleIdDetail.title}</h4>
         <p>{articleIdDetail.content}</p>
         <p>{articleIdDetail.createdAt}</p>
-        <PostCommentForm articleId={articleId} onSubmit={handleSubmit} />
+        <PostCommentForm articleId={articleId} />
       </div>
       <div className={style.commentList}>
         <ul>
-          {articleIdDetail.comments.length > 0 ? (
+          {articleIdDetail.comments && articleIdDetail.comments.length > 0 ? (
             articleIdDetail.comments.map((comment, index) => (
               <li
                 className={style.commentItem}

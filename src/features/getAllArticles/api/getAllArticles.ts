@@ -15,7 +15,6 @@ export const getAllArticles = async (): Promise<ArticleDetail[]> => {
       throw new Error("Network response was not ok");
     }
     const responseData = await response.json();
-    console.log(responseData);
     return responseData;
   } catch (error) {
     console.error("Error:", error);

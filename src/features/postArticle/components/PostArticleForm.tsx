@@ -16,7 +16,7 @@ interface PostArticleFormProps {
 const PostArticleForm: React.FC<PostArticleFormProps> = ({ onSubmit }) => {
   const [formData, setFormData] = useState<FormData>({
     // TODO:userIdはログイン時のセッションから取得
-    userId: 68,
+    userId: 1,
     title: "",
     content: "",
   });

@@ -3,14 +3,10 @@ import React, { useEffect, useState } from "react";
 import { getAllArticles } from "../api/getAllArticles";
 import style from "../styles/AllArticleList.module.css";
 import Link from "next/link";
-
-export interface Article {
-  id: number;
-  title: string;
-}
+import { ArticleDetail } from "@/types/types";
 
 const AllArticleList: React.FC = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<ArticleDetail[]>([]);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -25,7 +21,7 @@ const AllArticleList: React.FC = () => {
       <ul className={style.articleList}>
         {articles.map((article) => (
           <li key={article.id}>
-            <Link href={`/${article.id}`}>
+            <Link href={`/article/${article.id}`}>
               <p className="title">{article.title}</p>
             </Link>
           </li>

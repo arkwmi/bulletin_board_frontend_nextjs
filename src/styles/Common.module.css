@@ -32,12 +32,24 @@
 .btn {
   padding: 8px 16px;
   color: #fff;
+  cursor: pointer;
   background-color: #333;
   border-radius: 5px;
 }
 
 /* margin */
+.mt8 {
+  margin-top: 8px;
+}
+
+.mt16 {
+  margin-top: 16px;
+}
+
 .mt24 {
     margin-top: 24px;
 }
 
+.ml16 {
+  margin-left: 16px;
+}

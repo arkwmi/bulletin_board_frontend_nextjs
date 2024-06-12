@@ -1,0 +1,18 @@
+.postArticleForm {
+  margin-top: 80px;
+  text-align: center;
+  border: 1px solid #000;
+  margin: 24px;
+  padding: 24px;
+}
+
+.commentList {
+  border: 1px solid #000;
+  margin: 24px;
+}
+
+.commentItem {
+  position: relative;
+  padding: 20px 20px 82px;
+  border-bottom: 1px solid #e3e3e3;
+}

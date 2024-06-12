@@ -5,7 +5,7 @@ import PostCommentForm from "@/features/postComment/components/PostCommentForm";
 
 interface ArticleDetailProps {
   articleId: number;
-  articleIdDetail: ArticleDetail;
+  articleIdDetail: ArticleDetail | null;
 }
 
 const ArticleIdDetail: React.FC<ArticleDetailProps> = async ({ articleId, articleIdDetail }) => {

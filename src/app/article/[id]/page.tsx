@@ -12,7 +12,7 @@ const ArticleDetailPage: React.FC<ArticlePageProps> = async ({ params }) => {
 
   return (
     <div>
-      {id && articleIdDetail && <ArticleIdDetail articleId={Number(id)} articleIdDetail={articleIdDetail} />}
+      {id && <ArticleIdDetail articleId={Number(id)} articleIdDetail={articleIdDetail} />}
     </div>
   );
 };

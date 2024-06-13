@@ -1,7 +1,7 @@
 import style from "../styles/ArticleIdDetail.module.css";
 import cStyle from "../../../styles/Common.module.css";
 import { ArticleDetail } from "@/types/types";
-import PostCommentForm from "@/features/postComment/components/PostCommentForm";
+import PostCommentForm from "@/features/comments/components/PostCommentForm";
 
 interface ArticleDetailProps {
   articleId: number;

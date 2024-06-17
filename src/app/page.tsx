@@ -1,10 +1,11 @@
 import React from "react";
 import cStyle from "../styles/Common.module.css";
 import Link from "next/link";
-import AllArticleList from "@/features/getAllArticles/components/AllArticleList";
-import DisplayCount from "@/features/displayCount/components/DisplayCount";
-import { getUserCount } from "@/features/displayCount/api/getUserCount";
-import { getArticleCount } from "@/features/displayCount/api/getArticleCount";
+import { getUserCount } from "@/features/top/api/getUserCount";
+import { getArticleCount } from "@/features/top/api/getArticleCount";
+import DisplayCount from "@/features/top/components/DisplayCount";
+import AllArticleList from "@/features/articles/components/AllArticleList";
+
 
 const TopPage = async () => {
   const [userCount, articleCount] = await Promise.all([

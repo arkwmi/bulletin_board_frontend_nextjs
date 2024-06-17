@@ -2,6 +2,7 @@
   display: flex;
   justify-content: center;
   padding: 24px;
+  display: flex;
 }
 
 .articleList {
@@ -19,4 +20,45 @@
   padding-right: 20px;
   border-bottom: 1px solid #e3e3e3;
   list-style: none;
+}
+
+.articleItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.wrapTitleComment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  flex-grow: 1;
+}
+
+.comment {
+  color: #1e90ff;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.editButton {
+  background-color: #808080;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.editButton:hover {
+  background-color: #696969;
 }

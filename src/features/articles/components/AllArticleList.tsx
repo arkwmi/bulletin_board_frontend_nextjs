@@ -16,19 +16,29 @@ const AllArticleList: React.FC = () => {
     fetchArticles();
   }, []);
 
-  return (
-    <div className={style.wrapArticleList}>
-      <ul className={style.articleList}>
-        {articles.map((article) => (
-          <li key={article.id}>
-            <Link href={`/article/${article.id}`}>
-              <p className="title">{article.title}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+  const renderContent = () => {
+    if (articles.length > 0) {
+      return <ArticleList articles={articles} />;
+    } else {
+      return <p>記事はありません</p>;
+    }
+  };
+
+  const ArticleList: React.FC<{ articles: ArticleDetail[] }> = ({
+    articles,
+  }) => (
+    <ul className={style.articleList}>
+      {articles.map((article) => (
+        <li key={article.id}>
+          <Link href={`/article/${article.id}`}>
+            <p className="title">{article.title}</p>
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
+
+  return <div className={style.wrapArticleList}>{renderContent()}</div>;
 };
 
 export default AllArticleList;

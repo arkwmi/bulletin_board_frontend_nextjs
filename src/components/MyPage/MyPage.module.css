@@ -1,0 +1,35 @@
+.wrapMyPage {
+  display: flex;
+  width: 100%;
+}
+
+.myPageSideMenu {
+  background-color: bisque;
+  width: 25%;
+  padding: 24px 0 24px 24px;
+}
+
+.myPageMain {
+  width: 75%;
+  text-align: center;
+}
+
+.myPageLayout {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.myPageLayout h2 {
+  margin-top: 24px;
+  margin-bottom: 15px;
+}
+
+.myPageContent {
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

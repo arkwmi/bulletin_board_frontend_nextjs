@@ -1,7 +1,7 @@
 "use client";
+import { postArticle } from "@/features/articles/api/postArticle";
 import cStyle from "../../styles/Common.module.css";
-import PostArticleForm from "@/features/postArticle/components/PostArticleForm";
-import { postArticle } from "@/features/postArticle/api/postArticle";
+import PostArticleForm from "@/features/articles/components/PostArticleForm";
 
 const PostArticlePage: React.FC = () => {
   const handleSubmit = async (data: { userId: number,title: string; content: string }) => {

@@ -1,37 +1,45 @@
 "use client";
-import { useEffect, useState } from "react";
 import { CommentDetail } from "@/types/types";
 import Link from "next/link";
 import style from "../../articles/styles/AllArticleList.module.css";
-import { getCommentsAndArticlesByUserId } from "../api/getCommentsAndArticlesByUserId";
+import { useState } from "react";
+import Modal from "@/components/Modal/Modal";
+import { deleteComment } from "../api/deleteComment";
 
-const UserCommentList: React.FC = () => {
-  const [comments, setComments] = useState<CommentDetail[]>([]);
+interface CommentDetailProps {
+  userComments: CommentDetail[] | null;
+}
 
-  // TODO: userIdはログイン時のセッションから取得
-  const userId = 1;
-
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const fetchedComments = await getCommentsAndArticlesByUserId({
-          userId,
-        });
-        setComments(fetchedComments);
-      } catch (error) {
-        console.error("Failed to fetch comments:", error);
-        setComments([]);
-      }
-    };
-    fetchComments();
-  }, [userId]);
+const UserCommentList: React.FC<CommentDetailProps> = ({ userComments }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCommentId, setSelectedCommentId] = useState<number | null>(
+    null
+  );
 
   const renderContent = () => {
-    if (comments.length > 0) {
-      return <CommentList comments={comments} />;
+    if (userComments) {
+      return <CommentList comments={userComments} />;
     } else {
       return <p>投稿コメントはありません</p>;
     }
+  };
+
+  const handleDeleteClick = (commentId: number) => {
+    setSelectedCommentId(commentId);
+    setShowModal(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (selectedCommentId !== null) {
+      await deleteComment(selectedCommentId);
+      setShowModal(false);
+      setSelectedCommentId(null);
+    }
+  };
+
+  const handleCancelDelete = () => {
+    setShowModal(false);
+    setSelectedCommentId(null);
   };
 
   const CommentList: React.FC<{ comments: CommentDetail[] }> = ({
@@ -47,15 +55,31 @@ const UserCommentList: React.FC = () => {
             </div>
           </Link>
           <div className={style.buttons}>
-            <button className={style.editButton}>編集</button>
-            <button className={style.editButton}>削除</button>
+            <Link href={`/myPage/userComments/editComment/${comment.id}`}>
+              <button className={style.editButton}>編集</button>
+            </Link>
+            <button
+              className={style.editButton}
+              onClick={() => handleDeleteClick(comment.id)}
+            >
+              削除
+            </button>
           </div>
         </li>
       ))}
     </ul>
   );
 
-  return <div className={style.wrapArticleList}>{renderContent()}</div>;
+  return (
+    <div className={style.wrapArticleList}>
+      {renderContent()}
+      <Modal
+        show={showModal}
+        onClose={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
+      />
+    </div>
+  );
 };
 
 export default UserCommentList;

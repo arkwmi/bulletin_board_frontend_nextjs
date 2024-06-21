@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import cStyle from "../../../styles/Common.module.css";
 import style from "../styles/PostArticle.module.css";
+import { postArticle } from "../api/postArticle";
 
 interface FormData {
   userId: number;
@@ -9,11 +10,7 @@ interface FormData {
   content: string;
 }
 
-interface PostArticleFormProps {
-  onSubmit: (data: FormData) => void;
-}
-
-const PostArticleForm: React.FC<PostArticleFormProps> = ({ onSubmit }) => {
+const PostArticleForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     // TODO:userIdはログイン時のセッションから取得
     userId: 1,
@@ -22,10 +19,14 @@ const PostArticleForm: React.FC<PostArticleFormProps> = ({ onSubmit }) => {
   });
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(formData);
-    setSuccessMessage("投稿しました");
+    try {
+      await postArticle(formData);
+      setSuccessMessage("投稿しました");
+    } catch (error) {
+      console.error("Failed to update article:", error);
+    }
   };
 
   const handleChange = (

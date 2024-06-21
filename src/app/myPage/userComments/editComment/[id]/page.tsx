@@ -1,5 +1,4 @@
 import style from "../../../../../styles/MyPage.module.css";
-import SideMenu from "@/components/SideMenu/SideMenu";
 import EditCommentForm from "@/features/comments/components/EditCommentForm";
 import { getCommentById } from "@/features/comments/api/getCommentById";
 import { CommentDetail } from "@/types/types";
@@ -21,19 +20,12 @@ const EditCommentPage: React.FC<EditCommentPageProps> = async ({ params }) => {
   };
 
   return (
-    <>
-      <div className={style.wrapMyPage}>
-        <SideMenu />
-        <div className={style.myPageMain}>
-          <div className={style.myPageLayout}>
-            <h2>コメント編集</h2>
-            <div className={style.pageContent}>
-              <EditCommentForm initialData={initialData} />
-            </div>
-          </div>
-        </div>
+    <div className={style.myPageLayout}>
+      <h2>コメント編集</h2>
+      <div className={style.pageContent}>
+        <EditCommentForm initialData={initialData} />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -1,4 +1,3 @@
-"use client";
 import UserArticleList from "@/features/articles/components/UserArticleList";
 import style from "../../../styles/MyPage.module.css";
 const UserArticlesPage: React.FC = () => {

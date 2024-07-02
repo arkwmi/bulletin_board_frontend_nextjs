@@ -17,7 +17,7 @@ const Header: React.FC = () => {
             <Link href="#">ログイン</Link>
           </li>
           <li>
-            <Link href="#">マイページ</Link>
+            <Link href="/myPage/nickname">マイページ</Link>
           </li>
         </ul>
       </div>

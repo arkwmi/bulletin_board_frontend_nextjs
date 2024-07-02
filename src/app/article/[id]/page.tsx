@@ -1,5 +1,5 @@
-import { getArticleIdDetail } from "@/features/getArticleIdDetail/api/getArticleIdDetail";
-import ArticleIdDetail from "@/features/getArticleIdDetail/components/ArticleIdDetail";
+import { getArticleIdDetail } from "@/features/articles/api/getArticleIdDetail";
+import ArticleIdDetail from "@/features/articles/components/ArticleIdDetail";
 import React from "react";
 
 interface ArticlePageProps {

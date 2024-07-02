@@ -1,31 +1,37 @@
 "use client";
-import React, { useState } from "react";
-import cStyle from "../../../styles/Common.module.css";
-import style from "../styles/PostArticle.module.css";
+import React, { useState, useEffect } from "react";
+import cStyle from "../../styles/Common.module.css";
+import style from "../../features/articles/styles/PostArticle.module.css";
+import { updateArticle } from "@/features/articles/api/updateArticle";
 
 interface FormData {
-  userId: number;
+  id: number;
   title: string;
   content: string;
 }
 
-interface PostArticleFormProps {
-  onSubmit: (data: FormData) => void;
+interface EditArticleFormProps {
+  initialData: FormData;
 }
 
-const PostArticleForm: React.FC<PostArticleFormProps> = ({ onSubmit }) => {
-  const [formData, setFormData] = useState<FormData>({
-    // TODO:userIdはログイン時のセッションから取得
-    userId: 1,
-    title: "",
-    content: "",
-  });
+const EditArticleForm: React.FC<EditArticleFormProps> = ({ initialData }) => {
+  const [formData, setFormData] = useState<FormData>(initialData);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    if (initialData) {
+      setFormData(initialData);
+    }
+  }, [initialData]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(formData);
-    setSuccessMessage("投稿しました");
+    try {
+      await updateArticle(formData);
+      setSuccessMessage("記事を更新しました");
+    } catch (error) {
+      console.error("Failed to update article:", error);
+    }
   };
 
   const handleChange = (
@@ -60,7 +66,7 @@ const PostArticleForm: React.FC<PostArticleFormProps> = ({ onSubmit }) => {
       </div>
       <div className={cStyle.mt24}>
         <button className={cStyle.btn} type="submit">
-          記事投稿
+          記事更新
         </button>
       </div>
       {successMessage && (
@@ -72,4 +78,4 @@ const PostArticleForm: React.FC<PostArticleFormProps> = ({ onSubmit }) => {
   );
 };
 
-export default PostArticleForm;
+export default EditArticleForm;

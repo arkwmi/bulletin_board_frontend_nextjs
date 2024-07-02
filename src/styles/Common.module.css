@@ -28,6 +28,10 @@
   text-align: center;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 /* 共通コンポーネント化 */
 .btn {
   padding: 8px 16px;

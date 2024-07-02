@@ -1,0 +1,64 @@
+.wrapArticleList {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  display: flex;
+}
+
+.articleList {
+  width: 98%;
+  border: 1px solid #000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.articleList li {
+  margin: 15px;
+  min-height: 80px;
+  padding-right: 20px;
+  border-bottom: 1px solid #e3e3e3;
+  list-style: none;
+}
+
+.articleItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.wrapTitleComment {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.title {
+  flex-grow: 1;
+}
+
+.comment {
+  color: #1e90ff;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.editButton {
+  background-color: #808080;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.editButton:hover {
+  background-color: #696969;
+}

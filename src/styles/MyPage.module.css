@@ -1,0 +1,23 @@
+.wrapMyPage {
+  display: flex;
+  width: 100%;
+}
+
+.myPageMain {
+  width: 75%;
+  text-align: center;
+}
+
+.myPageLayout {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.myPageLayout h2 {
+  margin-top: 24px;
+  margin-bottom: 15px;
+}
+
+.myPageContent {
+  padding: 10px;
+}

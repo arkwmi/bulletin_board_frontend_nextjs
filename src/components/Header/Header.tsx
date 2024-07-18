@@ -14,10 +14,10 @@ const Header: React.FC = () => {
       <div className={style.headerMenu}>
         <ul>
           <li>
-            <Link href="#">ログイン</Link>
+            <Link href="/login">ログイン</Link>
           </li>
           <li>
-            <Link href="/myPage/nickname">マイページ</Link>
+            <Link href="/my-page/nickname">マイページ</Link>
           </li>
         </ul>
       </div>

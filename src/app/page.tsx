@@ -17,7 +17,7 @@ const TopPage = async () => {
       <h1 className={cStyle.pageTitle}>掲示板トップ</h1>
       <DisplayCount userCount={userCount} articleCount={articleCount} />
       <div className={`${cStyle.btn} ${cStyle.wrapForm}`}>
-        <Link href="/postArticle">
+        <Link href="/post-article">
           <div>記事投稿</div>
         </Link>
       </div>

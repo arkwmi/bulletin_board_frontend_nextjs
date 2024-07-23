@@ -8,22 +8,22 @@ const SideMenu: React.FC = () => {
     <div className={style.myPageSideMenu}>
       <ul>
         <li className={cStyle.pointer}>
-          <Link href={"/myPage/nickname"}>
+          <Link href={"/my-page/nickname"}>
             <p className={style.title}>ニックネーム変更</p>
           </Link>
         </li>
         <li className={cStyle.pointer}>
-          <Link href={"/myPage/password"}>
+          <Link href={"/my-page/password"}>
             <p className={style.title}>パスワード変更</p>
           </Link>
         </li>
         <li className={cStyle.pointer}>
-          <Link href={"/myPage/userArticles"}>
+          <Link href={"/my-page/user-articles"}>
             <p className={style.title}>投稿記事一覧</p>
           </Link>
         </li>
         <li className={cStyle.pointer}>
-          <Link href={"/myPage/userComments"}>
+          <Link href={"/my-page/user-comments"}>
             <p className={style.title}>投稿コメント一覧</p>
           </Link>
         </li>

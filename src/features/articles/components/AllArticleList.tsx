@@ -4,9 +4,12 @@ import { getAllArticles } from "../api/getAllArticles";
 import style from "../styles/AllArticleList.module.css";
 import Link from "next/link";
 import { ArticleDetail } from "@/types/types";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const AllArticleList: React.FC = () => {
   const [articles, setArticles] = useState<ArticleDetail[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const articlesPerPage = 10;
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -16,9 +19,18 @@ const AllArticleList: React.FC = () => {
     fetchArticles();
   }, []);
 
+  const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const currentArticles = articles.slice(
+    indexOfFirstArticle,
+    indexOfLastArticle
+  );
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   const renderContent = () => {
-    if (articles.length > 0) {
-      return <ArticleList articles={articles} />;
+    if (currentArticles.length > 0) {
+      return <ArticleList articles={currentArticles} />;
     } else {
       return <p>記事はありません</p>;
     }
@@ -38,7 +50,19 @@ const AllArticleList: React.FC = () => {
     </ul>
   );
 
-  return <div className={style.wrapArticleList}>{renderContent()}</div>;
+  return (
+    <>
+      <div className={style.wrapArticleList}>
+        {renderContent()}
+      </div>
+      <Pagination
+        articlesPerPage={articlesPerPage}
+        totalArticles={articles.length}
+        currentPage={currentPage}
+        paginate={paginate}
+      />
+    </>
+  );
 };
 
 export default AllArticleList;

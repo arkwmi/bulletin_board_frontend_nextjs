@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import cStyle from "../../styles/Common.module.css";
-import style from "../../features/articles/styles/PostArticle.module.css";
+import cStyle from "../../../styles/Common.module.css";
+import style from "../styles/PostArticle.module.css";
 import { updateArticle } from "@/features/articles/api/updateArticle";
 
 interface FormData {

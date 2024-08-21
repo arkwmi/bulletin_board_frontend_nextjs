@@ -5,7 +5,6 @@ import style from "../styles/PostComment.module.css";
 import { postComment } from "../api/postComment";
 
 interface FormData {
-  userId: number;
   articleId: number;
   comment: string;
 }
@@ -16,8 +15,6 @@ interface PostCommentFormProps {
 
 const PostCommentForm: React.FC<PostCommentFormProps> = ({ articleId }) => {
   const [formData, setFormData] = useState<FormData>({
-    // TODO: userIdはログイン時のセッションから取得
-    userId: 1,
     articleId: articleId,
     comment: "",
   });

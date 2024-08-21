@@ -14,13 +14,10 @@ const UserArticleList: React.FC = () => {
     null
   );
 
-  // TODO: userIdはログイン時のセッションから取得
-  const userId = 1;
-
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const fetchedArticles = await getArticlesByUserId({ userId });
+        const fetchedArticles = await getArticlesByUserId();
         setArticles(fetchedArticles || []);
       } catch (error) {
         console.error("Failed to fetch articles:", error);
@@ -28,7 +25,7 @@ const UserArticleList: React.FC = () => {
       }
     };
     fetchArticles();
-  }, [userId]);
+  }, []);
 
   const renderContent = () => {
     if (articles.length > 0) {
@@ -69,7 +66,7 @@ const UserArticleList: React.FC = () => {
             <p className={style.title}>{article.title}</p>
           </Link>
           <div className={style.buttons}>
-            <Link href={`/myPage/userArticles/editArticle/${article.id}`}>
+            <Link href={`/my-page/user-articles/edit-article/${article.id}`}>
               <button className={style.editButton}>編集</button>
             </Link>
             <button

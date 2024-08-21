@@ -3,7 +3,6 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export const postComment = async (data: {
-    userId: number;
     articleId: number;
     comment: string;
   }) => {
@@ -14,6 +13,7 @@ export const postComment = async (data: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: "include", // cookieはバックエンドで取得
       });
       const responseData = await response.json();
       console.log(responseData);

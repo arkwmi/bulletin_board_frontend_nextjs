@@ -12,6 +12,7 @@ export const updateArticle = async (data: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+        credentials: "include", // cookieはバックエンドで取得
       }
     );
     const responseData = await response.json();

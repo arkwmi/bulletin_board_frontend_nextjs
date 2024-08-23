@@ -1,8 +1,9 @@
-import { cookies } from 'next/headers';
+import { cookies } from "next/headers";
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import style from "./Header.module.css";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Header = async () => {
   const cookieStore = cookies();
@@ -35,6 +36,7 @@ const Header = async () => {
         </Link>
       </div>
       <div className={style.headerMenu}>
+        <SearchBar />
         <ul>{renderNavigationMenu()}</ul>
       </div>
     </div>

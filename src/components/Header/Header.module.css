@@ -6,7 +6,10 @@
     color: #fff;
     padding: 8px 24px;
 }
+.headerMenu {
+    margin: 10px;
+}
 
-.header-menu {
+.flex {
     display: flex;
 }

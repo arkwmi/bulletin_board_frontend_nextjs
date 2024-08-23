@@ -28,4 +28,19 @@ export interface Article {
   createdAt: string;
 }
 
+export interface PaginatedArticles {
+  data: ArticleDetail[];
+  meta: {
+    currentPage: number;
+    itemsPerPage: number;
+    totalItems: number;
+    totalPages: number;
+  };
+  links: {
+    current: string;
+    next: string;
+    last: string;
+  };
+}
+
 export type MenuPageKey = "nickname" | "password" | "articles" | "comments";

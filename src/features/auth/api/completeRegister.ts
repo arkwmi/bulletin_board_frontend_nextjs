@@ -14,6 +14,7 @@ export async function completeRegister(
       nickname: formData.nickname,
       password: formData.password,
     }),
+    credentials: "include",
   });
 
   if (!response.ok) {

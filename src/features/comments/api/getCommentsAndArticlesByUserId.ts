@@ -1,15 +1,16 @@
 import { CommentDetail } from "@/types/types";
 
-export const getCommentsAndArticlesByUserId = async (data: { userId: number }): Promise<CommentDetail[]> => {
+export const getCommentsAndArticlesByUserId = async (): Promise<CommentDetail[]> => {
     try {
+      console.log('コメント一覧');
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/comments/user-comments`,
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          credentials: "include", // cookieはバックエンドで取得
         }
       );
       if (!response.ok) {

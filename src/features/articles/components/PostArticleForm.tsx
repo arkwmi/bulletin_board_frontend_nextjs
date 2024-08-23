@@ -3,29 +3,33 @@ import React, { useState } from "react";
 import cStyle from "../../../styles/Common.module.css";
 import style from "../styles/PostArticle.module.css";
 import { postArticle } from "../api/postArticle";
+import { useRouter } from "next/navigation";
 
 interface FormData {
-  userId: number;
   title: string;
   content: string;
 }
 
 const PostArticleForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    // TODO:userIdはログイン時のセッションから取得
-    userId: 1,
     title: "",
     content: "",
   });
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await postArticle(formData);
-      setSuccessMessage("投稿しました");
+      setMessage("投稿しました");
     } catch (error) {
-      console.error("Failed to update article:", error);
+      if (error instanceof Error) {
+        setMessage('ログインし直してください');
+      } else {
+        setMessage("An unknown error occurred");
+      }
+      console.error("Failed to post article:", error);
     }
   };
 
@@ -64,9 +68,9 @@ const PostArticleForm: React.FC = () => {
           記事投稿
         </button>
       </div>
-      {successMessage && (
+      {message && (
         <div className={cStyle.mt24}>
-          <p>{successMessage}</p>
+          <p>{message}</p>
         </div>
       )}
     </form>

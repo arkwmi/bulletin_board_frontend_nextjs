@@ -4,6 +4,7 @@ export const deleteArticle = async (id: number): Promise<void> => {
       `${process.env.NEXT_PUBLIC_BASE_URL}/articles/${id}`,
       {
         method: "DELETE",
+        credentials: "include", // cookieはバックエンドで取得
       }
     );
     if (!response.ok) {

@@ -2,11 +2,13 @@
 import React, { useEffect, useState } from "react";
 import cStyle from "../../../styles/Common.module.css";
 import { validateToken } from "../api/validateToken";
-import TempRegistrationForm from "./TempRegistrationForm";
+import CompleteRegistrationForm from "./CompleteRegistrationForm";
+import Link from "next/link";
 
 const CompleteSignUp: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [isValid, setIsValid] = useState<boolean>(false);
+  const [userId, setUserId] = useState<number | null>(null);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -17,6 +19,7 @@ const CompleteSignUp: React.FC = () => {
         .then((response) => {
           if (response.valid) {
             console.log(response);
+            setUserId(response.userId);
             setIsValid(true);
           } else {
             setError("トークンの有効期限が切れています");
@@ -32,8 +35,19 @@ const CompleteSignUp: React.FC = () => {
 
   return (
     <div className={cStyle.wrapForm}>
-      {error && <div>{error}</div>}
-      {isValid && <TempRegistrationForm />}
+      {error && (
+        <div>
+          <p>{error}</p>
+          <Link href={"/sign-up"}>
+            <p className={cStyle.link}>
+              こちらのリンクから再度メールを送信してください
+            </p>
+          </Link>
+        </div>
+      )}
+      {isValid && userId !== null && (
+        <CompleteRegistrationForm userId={userId} />
+      )}
     </div>
   );
 };

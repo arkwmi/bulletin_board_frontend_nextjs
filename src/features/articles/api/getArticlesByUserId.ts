@@ -1,15 +1,15 @@
 import { ArticleDetail } from "@/types/types";
 
-export const getArticlesByUserId = async (data: { userId: number }): Promise<ArticleDetail[]> => {
+export const getArticlesByUserId = async (): Promise<ArticleDetail[]> => {
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL}/articles/user-articles`,
         {
-          method: "POST",
+          method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          credentials: "include",
         }
       );
       if (!response.ok) {

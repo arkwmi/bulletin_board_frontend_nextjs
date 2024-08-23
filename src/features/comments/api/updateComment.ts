@@ -1,6 +1,3 @@
-'use server';
-import { revalidatePath } from "next/cache";
-
 export const updateComment = async (data: {
     id: number;
     comment: string;
@@ -14,13 +11,11 @@ export const updateComment = async (data: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(data),
+          credentials: "include", // cookieはバックエンドで取得
         }
       );
       const responseData = await response.json();
       console.log(responseData);
-
-      // キャッシュされた投稿を更新する
-      revalidatePath(`/comments/${data.id}`);
 
     } catch (error) {
       console.error("Error:", error);

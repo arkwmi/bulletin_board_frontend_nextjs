@@ -32,6 +32,29 @@
   cursor: pointer;
 }
 
+.wrapMenuBox {
+  justify-content: center;
+  margin: 24px;
+}
+
+.wrapMenu {
+  margin-bottom: 16px;
+  border: 1px solid #c0c0c0;
+  padding: 24px;
+  text-align: center;
+}
+
+.link {
+  color: #1e90ff;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #4169e1;
+  }
+}
+
 /* 共通コンポーネント化 */
 .btn {
   padding: 8px 16px;
@@ -51,7 +74,7 @@
 }
 
 .mt24 {
-    margin-top: 24px;
+  margin-top: 24px;
 }
 
 .ml16 {

@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import cStyle from "../../../styles/Common.module.css";
 import style from "../styles/PostComment.module.css";
 import { postComment } from "../api/postComment";
+import error from "next/error";
 
 interface FormData {
-  userId: number;
   articleId: number;
   comment: string;
 }
@@ -16,8 +16,6 @@ interface PostCommentFormProps {
 
 const PostCommentForm: React.FC<PostCommentFormProps> = ({ articleId }) => {
   const [formData, setFormData] = useState<FormData>({
-    // TODO: userIdはログイン時のセッションから取得
-    userId: 1,
     articleId: articleId,
     comment: "",
   });
@@ -29,11 +27,24 @@ const PostCommentForm: React.FC<PostCommentFormProps> = ({ articleId }) => {
       setMessage("コメントを入力してください");
       return;
     }
-    await postComment(formData);
-    setMessage("投稿しました");
+    try {
+      await postComment(formData);
+      setMessage("投稿しました");
+      // 現在のページをリロード
+      window.location.reload();
+    } catch {
+      if (error instanceof Error) {
+        setMessage("ログインし直してください");
+      } else {
+        setMessage("An unknown error occurred");
+      }
+      console.error("Failed to post comment:", error);
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };

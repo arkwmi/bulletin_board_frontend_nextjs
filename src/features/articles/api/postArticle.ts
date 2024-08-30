@@ -1,5 +1,4 @@
 export const postArticle = async (data: {
-  userId: number;
   title: string;
   content: string;
 }) => {
@@ -10,10 +9,18 @@ export const postArticle = async (data: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+      credentials: "include", // cookieはバックエンドで取得
     });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || '何か問題が発生しました');
+    }
+
     const responseData = await response.json();
     console.log(responseData);
   } catch (error) {
     console.error("Error:", error);
+    throw error;
   }
 };

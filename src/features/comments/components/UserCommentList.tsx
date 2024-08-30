@@ -2,19 +2,25 @@
 import { CommentDetail } from "@/types/types";
 import Link from "next/link";
 import style from "../../articles/styles/AllArticleList.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "@/components/Modal/Modal";
 import { deleteComment } from "../api/deleteComment";
+import { getCommentsAndArticlesByUserId } from "../api/getCommentsAndArticlesByUserId";
 
-interface CommentDetailProps {
-  userComments: CommentDetail[] | null;
-}
-
-const UserCommentList: React.FC<CommentDetailProps> = ({ userComments }) => {
+const UserCommentList: React.FC = () => {
+  const [userComments, setUserComments] = useState<CommentDetail[] | null>(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedCommentId, setSelectedCommentId] = useState<number | null>(
     null
   );
+
+  useEffect(() => {
+    const fetchUserComments = async () => {
+      const comments = await getCommentsAndArticlesByUserId();
+      setUserComments(comments);
+    };
+    fetchUserComments();
+  }, []);
 
   const renderContent = () => {
     if (userComments) {
@@ -34,6 +40,8 @@ const UserCommentList: React.FC<CommentDetailProps> = ({ userComments }) => {
       await deleteComment(selectedCommentId);
       setShowModal(false);
       setSelectedCommentId(null);
+      // 現在のページをリロード
+      window.location.reload();
     }
   };
 
@@ -55,7 +63,7 @@ const UserCommentList: React.FC<CommentDetailProps> = ({ userComments }) => {
             </div>
           </Link>
           <div className={style.buttons}>
-            <Link href={`/myPage/userComments/editComment/${comment.id}`}>
+            <Link href={`/my-page/user-comments/edit-comment/${comment.id}`}>
               <button className={style.editButton}>編集</button>
             </Link>
             <button

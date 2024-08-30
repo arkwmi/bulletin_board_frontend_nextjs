@@ -1,11 +1,12 @@
-export const updateNickname = async (userId: number, nickname: string): Promise<void> => {
+export const updateNickname = async (nickname: string): Promise<void> => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users/nickname`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId, nickname }),
+        body: JSON.stringify({ nickname }),
+        credentials: "include", // cookieはバックエンドで取得
       });
   
       if (!response.ok) {

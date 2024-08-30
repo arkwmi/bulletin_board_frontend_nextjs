@@ -1,11 +1,12 @@
-export const updatePassword = async (userId: number, password: string): Promise<void> => {
+export const updatePassword = async (password: string): Promise<void> => {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/users/password`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ userId, password }),
+        body: JSON.stringify({ password }),
+        credentials: "include", // cookieはバックエンドで取得
       });
   
       if (!response.ok) {

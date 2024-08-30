@@ -25,9 +25,7 @@ const UpdateNicknameForm: React.FC = () => {
     }
 
     try {
-      // TOD0: 認証ガードで躓いているため、ユーザーIDを一時的に設定しています🙇
-      const userId = 1;
-      await updateNickname(userId, nickname);
+      await updateNickname(nickname);
       setSuccess("ニックネームが変更されました。");
     } catch (err) {
       setError("ニックネームの変更に失敗しました。");

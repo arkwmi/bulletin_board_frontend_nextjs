@@ -25,9 +25,7 @@ const UpdatePasswordForm: React.FC = () => {
     }
 
     try {
-      // TOD0: 認証ガードで躓いているため、ユーザーIDを一時的に設定しています🙇
-      const userId = 1;
-      await updatePassword(userId, password);
+      await updatePassword(password);
       setSuccess("パスワードが変更されました。");
     } catch (err) {
       setError("パスワードの変更に失敗しました。");
